@@ -12,7 +12,7 @@ maxWorkingHr=100
 totalEmpHr=0
 totalWorkingDays=0
 
-while [ $totalEmpHr -le $maxWorkingHr ] & [ $totalWorkingDays -le $maxWorkingDays ]
+while [ $totalEmpHr -le $maxWorkingHr ] | [ $totalWorkingDays -le $maxWorkingDays ]
 do
 	attendance=$((RANDOM%3))
 	
