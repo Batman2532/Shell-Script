@@ -6,15 +6,29 @@ partTime=2
 wagePerHour=20
 fullDay=8
 halfDay=4
-workingDay=20
-attendance=$((RANDOM%3))
+maxWorkingDays=20
+maxWorkingHr=100
+
+totalEmpHr=0
+totalWorkingDays=0
+
+while [ $totalEmpHr -le $maxWorkingHr ] & [ $totalWorkingDays -le $maxWorkingDays ]
+do
+	attendance=$((RANDOM%3))
+	
 case $attendance in
 	$isPresent)
-		wage=$(( $wagePerHour * $fullDay * $workingDay ))
+		((totalWorkingDays++))
+		totalEmpHr=$(($totalEmpHr + 8))
+		wage=$(( $wagePerHour * $fullDay * $maxWorkingDays ))
 		echo "Employee is Present and his/her salary is: " $wage ;;
 	$partTime)
-		wage=$(( $wagePerHour * $halfDay * $workingDay ))
+		((totalWorkingDays++))
+		totalEmpHr=$(($totalEmpHr + 4))
+		wage=$(( $wagePerHour * $halfDay * $maxWorkingDays ))
 		echo "Employee is Present and his/her salary is: " $wage ;;
 	*)
 	echo Employee is Absent
 esac
+done
+echo $totalWorkingDays $totalEmpHr
