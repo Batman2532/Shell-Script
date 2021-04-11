@@ -13,7 +13,7 @@ totalEmpHr=0
 totalWorkingDays=0
 
 function workHours() {
-	echo $totalEmpHr
+	 echo $totalEmpHr
 }
 
 while [ $totalEmpHr -le $maxWorkingHr ] | [ $totalWorkingDays -le $maxWorkingDays ]
@@ -25,16 +25,15 @@ case $attendance in
 		((totalWorkingDays++))
 		totalEmpHr=$(($totalEmpHr + 8))
 		workHours $totalEmpHr
-		wage=$(( $wagePerHour * $fullDay * $maxWorkingDays ))
-		echo "Employee is Present and his/her salary is: " $wage ;;
+		wage=$(( $wagePerHour * $fullDay * $maxWorkingDays ));;
 	$partTime)
 		((totalWorkingDays++))
 		totalEmpHr=$(($totalEmpHr + 4))
 		wage=$(( $wagePerHour * $halfDay * $maxWorkingDays ))
-		 workHours $totalEmpHr
-		echo "Employee is Present and his/her salary is: " $wage ;;
+		workHours $totalEmpHr;;
 	*)
-	echo Employee is Absent
+	echo "Employee is Absent"
 esac
+totalWages=$(( $totalEmpHr * $wagePerHour ))
 done
-echo $totalWorkingDays $totalEmpHr
+echo $totalWages
